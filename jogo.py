@@ -1,3 +1,5 @@
+from colorama import Fore, Style, init
+init(autoreset = True)
 
 def escreve_jogada(jogada):
     match jogada:
@@ -19,34 +21,37 @@ def analisa_jogada(jogada1, jogada2):
 def ler_jogada():
     while True:
         try:
-            jogada = int(input("Digite sua jogada (1 - Pedra, 2 - Papel, 3 - Tesoura): "))
+            jogada = int(input("Digite sua jogada: (" + Fore.CYAN + "1"+ Fore.WHITE + " - Pedra, "+ Fore.CYAN + "2"+ Fore.WHITE + " - Papel, "+ Fore.CYAN+ "3"+ Fore.WHITE + " - Tesoura): "))
             if jogada in [1, 2, 3]:
                 return jogada
             else:
-                print("Jogada inválida. Por favor, digite 1, 2 ou 3.")
+                print(Fore.RED + "Jogada inválida. Por favor, digite 1, 2 ou 3.")
         except ValueError:
-            print("Jogada inválida. Por favor, digite 1, 2 ou 3.")
+            print(Fore.RED + "Jogada inválida. Por favor, digite 1, 2 ou 3.")
 
 def escreve_resultado(resultado):
     match resultado:
         case "E":
-            print("Empate!")
+            print(Fore.YELLOW + "Empate!")
         case "P1":
-            print("Jogador 1 venceu!")
+            print(Fore.GREEN + "Jogador 1 venceu!")
         case "P2":
-            print("Jogador 2 venceu!")
+            print(Fore.GREEN + "Jogador 2 venceu!")
+
 
 def main():
-    print("Jogador 1, faça a sua jogada")
+    print(Style.BRIGHT + Fore.LIGHTBLUE_EX + "Jogador 1, faça a sua jogada")
     jogada1 = ler_jogada()
-    print("Jogador 2, faça a sua jogada")
+    print(Style.BRIGHT + Fore.LIGHTBLUE_EX + "Jogador 2, faça a sua jogada")
     jogada2 = ler_jogada()
 
     resultado = analisa_jogada(jogada1, jogada2)
 
-    print("Jogada do Jogador 1:", escreve_jogada(jogada1))
-    print("Jogada do Jogador 2:", escreve_jogada(jogada2))
+    print(Style.BRIGHT + Fore.LIGHTBLUE_EX + "Jogada do Jogador 1:", escreve_jogada(jogada1))
+    print(Style.BRIGHT + Fore.LIGHTBLUE_EX + "Jogada do Jogador 2:", escreve_jogada(jogada2))
     escreve_resultado(resultado)
+
+
 
 if __name__ == "__main__":
     main()
